@@ -20,7 +20,7 @@ This code is (and forever will be) a work in progress.
 ### Usage
 Make sure Rust and gcc are installed and just run:
 ```
-make
+make benchmark
 ```
 
 ### Todo
