@@ -1,4 +1,4 @@
-# tlv
+# saw_bench
 Benchmark rust vs. C++ by enumerating self avoiding random walks.
 
 ```
