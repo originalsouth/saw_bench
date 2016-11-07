@@ -46,7 +46,7 @@ int main()
         z=0.0;
         rsq=0.0;
         mov(NMAX,NMAX,0);
-        printf("%d;%f;%f\n",n,z,rsq/z);
+        printf("%d;%.17g;%.17g\n",n,z,rsq/z);
     }
     return EXIT_SUCCESS;
 }
