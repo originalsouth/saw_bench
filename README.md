@@ -18,7 +18,7 @@ Feel free to reuse and contribute, pull requests are very welcome!
 This code is (and forever will be) a work in progress.
 
 ### Usage
-Make sure Rust and gcc are installed and just run:
+Make sure rustc and gcc are installed and just run:
 ```
 make benchmark
 ```
