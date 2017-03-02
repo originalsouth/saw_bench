@@ -1,5 +1,5 @@
 # saw_bench
-Benchmark rust vs. C++ vs. Julia vs. python by enumerating self avoiding random walks.
+Benchmark rust vs. C++ vs. Julia vs. python vs. awk by enumerating self avoiding random walks.
 
 ```
 /* By BC van Zuiden -- Leiden, November 2016 */
@@ -12,13 +12,13 @@ Benchmark rust vs. C++ vs. Julia vs. python by enumerating self avoiding random 
 ```
 
 ###
-Tries to compare runtimes of rust, C++, Julia, python.
+Tries to compare runtimes of rust, C++, Julia, python, awk
 
 Feel free to reuse and contribute, pull requests are very welcome!
 This code is (and forever will be) a work in progress.
 
 ### Usage
-Make sure Rust, gcc, Julia and python are installed and just run:
+Make sure Rust, gcc, Julia, python and gawk are installed and just run:
 ```
 make benchmark
 ```
