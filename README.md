@@ -1,4 +1,4 @@
-# tlv
+# saw_bench
 Benchmark rust vs. C++ vs. Julia vs. python by enumerating self avoiding random walks.
 
 ```
