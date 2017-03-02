@@ -1,5 +1,5 @@
 # saw_bench
-Benchmark rust vs. C++ vs. Julia vs. python vs. awk by enumerating self avoiding random walks.
+Benchmark a bunch of programming languages by enumerating self avoiding random walks.
 
 ```
 /* By BC van Zuiden -- Leiden, November 2016 */
@@ -12,7 +12,7 @@ Benchmark rust vs. C++ vs. Julia vs. python vs. awk by enumerating self avoiding
 ```
 
 ###
-Tries to compare runtimes of rust, C++, Julia, python, awk
+Compares runtimes the same recursive algorithm for self avoiding random walks 
 
 Feel free to reuse and contribute, pull requests are very welcome!
 This code is (and forever will be) a work in progress.
