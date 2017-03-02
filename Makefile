@@ -12,7 +12,7 @@ benchmark_julia:
 	time ./saw.jl > /dev/null
 
 benchmark_python:
-	time ./saw_python > /dev/null
+	time ./saw.py > /dev/null
 
 saw_rust: saw.rs
 	rustc -C opt-level=3 -C lto -o saw_rust saw.rs
