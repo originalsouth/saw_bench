@@ -18,7 +18,7 @@ Feel free to reuse and contribute, pull requests are very welcome!
 This code is (and forever will be) a work in progress.
 
 ### Usage
-Make sure Rust, gcc, Julia, python and gawk are installed and just run:
+Make sure Rust, gcc, Julia, python, gawk and php are installed and just run:
 ```
 make benchmark
 ```
