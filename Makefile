@@ -1,30 +1,29 @@
 all: saw_rust saw_cc saw_em.js
 
-benchmark: all benchmark_rust benchmark_cc benchmark_julia	benchmark_python benchmark_awk benchmark_php benchmark_js benchmark_emjs
-
+benchmark: all benchmark_rust benchmark_cc benchmark_emjs benchmark_julia	benchmark_python benchmark_awk benchmark_php benchmark_js 
 benchmark_rust:
-	time ./saw_rust > /dev/null
+	@./timer.sh rust ./saw_rust
 
 benchmark_cc:
-	time ./saw_cc > /dev/null
+	@./timer.sh c++ ./saw_cc
 
 benchmark_emjs:
-	time node saw_em.js > /dev/null
+	@./timer.sh 'emscripten/node (js)' './saw_em.js'
 
 benchmark_julia:
-	time ./saw.jl > /dev/null
+	@./timer.sh julia './saw.jl'
 
 benchmark_python:
-	time ./saw.py > /dev/null
+	@./timer.sh python './saw.py'
 
 benchmark_awk:
-	time ./saw.awk > /dev/null
+	@./timer.sh 'awk (gawk)' './saw.awk'
 
 benchmark_php:
-	time ./saw.php > /dev/null
+	@./timer.sh php './saw.php'
 
 benchmark_js:
-	time ./saw.js > /dev/null
+	@./timer.sh 'node (js)' './saw.js'
 
 saw_rust: saw.rs
 	rustc -C opt-level=3 -C lto -o saw_rust saw.rs
@@ -34,8 +33,10 @@ saw_cc: saw.cc
 
 saw_em.js: saw.cc
 	em++ -Wall -Wextra -std=c++11 -flto -O3 -o saw_em.js saw.cc
+	@sed -i "1i #!/usr/bin/env node" saw_em.js
+	@chmod u+x saw_em.js
 
 clean:
 	-rm -f saw_rust
 	-rm -f saw_cc
-	-rm -f saw_em.js
+	-rm -f saw_em.js*
