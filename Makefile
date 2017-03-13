@@ -1,12 +1,15 @@
-all: saw_rust saw_cc
+all: saw_rust saw_cc saw_em.js
 
-benchmark: all benchmark_rust benchmark_cc benchmark_julia	benchmark_python benchmark_awk benchmark_php benchmark_js
+benchmark: all benchmark_rust benchmark_cc benchmark_julia	benchmark_python benchmark_awk benchmark_php benchmark_js benchmark_emjs
 
 benchmark_rust:
 	time ./saw_rust > /dev/null
 
 benchmark_cc:
 	time ./saw_cc > /dev/null
+
+benchmark_emjs:
+	time node saw_em.js > /dev/null
 
 benchmark_julia:
 	time ./saw.jl > /dev/null
@@ -27,8 +30,12 @@ saw_rust: saw.rs
 	rustc -C opt-level=3 -C lto -o saw_rust saw.rs
 
 saw_cc: saw.cc
-	g++ -Wall -Wextra -flto -O3 -o saw_cc saw.cc
+	g++ -Wall -Wextra -std=c++11 -flto -O3 -o saw_cc saw.cc
+
+saw_em.js: saw.cc
+	em++ -Wall -Wextra -std=c++11 -flto -O3 -o saw_em.js saw.cc
 
 clean:
 	-rm -f saw_rust
 	-rm -f saw_cc
+	-rm -f saw_em.js
