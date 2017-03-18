@@ -1,39 +1,52 @@
 #!/usr/bin/env julia
 
-NMAX=20
-n=0
-z=0.0
-rsq=0.0
-grid=zeros(Bool,2*NMAX+1,2*NMAX+1)
+const NMAX=20
 
-function mov(x,y,ln)
-    global grid
-    if ln==n
-        global z+=1.0
-        global rsq+=(x-NMAX-1)^2+(y-NMAX-1)^2
+type Vars
+    grid::Array{Bool,2}
+    z::Float64
+    rsq::Float64
+    n::Int64
+end
+
+function update_z_rsq(vars::Vars, x::Int64, y::Int64)
+    vars.z += 1.0
+    vars.rsq += (x-NMAX-1)^2+(y-NMAX-1)^2
+
+    return vars
+end
+
+function update_grid(vars::Vars, x::Int64, y::Int64, ln::Int64)
+    vars.grid[x,y]=true
+    if !vars.grid[x+1,y]
+        vars = mov(vars, x+1, y, ln+1)
+    end
+    if !vars.grid[x-1,y]
+        vars = mov(vars, x-1, y, ln+1)
+    end
+    if !vars.grid[x,y+1]
+        vars = mov(vars, x, y+1, ln+1)
+    end
+    if !vars.grid[x,y-1]
+        vars = mov(vars, x, y-1, ln+1)
+    end
+    vars.grid[x,y]=false
+
+    return vars
+end
+
+function mov(vars::Vars, x::Int64, y::Int64, ln::Int64)
+    if ln == vars.n
+        return update_z_rsq(vars, x, y)
     else
-        grid[x,y]=true
-        if !grid[x+1,y]
-            mov(x+1,y,ln+1)
-        end
-        if !grid[x-1,y]
-            mov(x-1,y,ln+1)
-        end
-        if !grid[x,y+1]
-            mov(x,y+1,ln+1)
-        end
-        if !grid[x,y-1]
-            mov(x,y-1,ln+1)
-        end
-        grid[x,y]=false
+        return update_grid(vars, x, y, ln)
     end
 end
 
 @printf("#n[1];z[2];<rsq>[3]\n");
 for n in 0:1:NMAX-1
-    z=0.0
-    rsq=0.0
-    mov(NMAX+1,NMAX+1,0)
-    @printf("%d;%.17g;%.17g\n",n,z,rsq/z)
+    vars = Vars(zeros(Bool,2*NMAX+1,2*NMAX+1), 0.0, 0.0, n)
+    vars = mov(vars, NMAX+1, NMAX+1, 0)
+    @printf("%d;%.17g;%.17g\n",vars.n,vars.z,vars.rsq/vars.z)
 end
 exit(0)
