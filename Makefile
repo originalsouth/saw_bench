@@ -35,6 +35,9 @@ benchmark_js:
 saw_rust: saw.rs
 	rustc -C opt-level=3 -C lto -o saw_rust saw.rs
 
+saw_f90: saw.f90
+	gfortran -Wall -Wextra -flto -O3 -o saw_f90 saw.f90
+
 saw_c: saw.c
 	gcc -Wall -Wextra -std=c11 -flto -O3 -o saw_c saw.c
 
