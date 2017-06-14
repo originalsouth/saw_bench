@@ -1,6 +1,6 @@
 all: saw_rust saw_c saw_cc saw_em_c.js saw_em_cc.js 
 
-benchmark: all benchmark_rust benchmark_c benchmark_cc benchmark_emjs_c benchmark_emjs_cc benchmark_julia benchmark_python benchmark_awk benchmark_php benchmark_js 
+benchmark: all benchmark_rust benchmark_c benchmark_cc benchmark_emjs_c benchmark_emjs_cc benchmark_julia benchmark_python benchmark_awk benchmark_php benchmark_js benchmark_elixir
 
 benchmark_rust:
 	@./timer.sh rust ./saw_rust
@@ -31,6 +31,9 @@ benchmark_php:
 
 benchmark_js:
 	@./timer.sh 'node (js)' './saw.js'
+
+benchmark_elixir:
+	@./timer.sh elixir './saw.ex'
 
 saw_rust: saw.rs
 	rustc -C opt-level=3 -C lto -o saw_rust saw.rs
