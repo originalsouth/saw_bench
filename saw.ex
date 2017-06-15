@@ -1,8 +1,9 @@
+#!/usr/bin/env elixir
+
 defmodule Saw.Vars do
 	@enforce_keys [:grid,:z,:rsq,:n]
 	defstruct [:grid,:z,:rsq,:n]
 end
-
 
 defmodule Saw do
 	def get(a, i, j) do
@@ -57,6 +58,3 @@ defmodule Main do
 end
 
 Main.main
-
-
-
