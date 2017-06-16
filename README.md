@@ -24,16 +24,18 @@ make benchmark
 ```
 
 ### Results
-Running this on a Intel(R) Core(TM) M-5Y10c CPU @ 0.80GHz we find:
+Running this on a Intel(R) Xeon(R) CPU E5-2690 0 @ 2.90GHz we find:
 ```
-rust: 7.99s
-c: 6.12s
-c++: 6.26s
-emcc/js (node): 12.02s
-em++/js (node): 15.51s
-julia: 16.79s
-python: 984.79s
-awk (gawk): 696.58s
-php: 362.15s
-node (js): 26.66s
+rust: 4.68s
+fortran90: 4.34s
+c: 4.18s
+c++: 4.02s
+emcc/js (node): 6.88s
+em++/js (node): 9.07s
+julia: 9.21s
+python: 694.97s
+awk (gawk): 518.20s
+php: 233.37s
+node (js): 23.07s
+elixir: 1379.60s
 ```
