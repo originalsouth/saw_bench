@@ -1,6 +1,6 @@
 all: saw_rust saw_f90 saw_c saw_cc saw_em_c.js saw_em_cc.js
 
-benchmark: all benchmark_rust benchmark_f90 benchmark_c benchmark_cc benchmark_emjs_c benchmark_emjs_cc benchmark_julia benchmark_python benchmark_awk benchmark_php benchmark_js benchmark_elixir
+benchmark: all benchmark_rust benchmark_f90 benchmark_c benchmark_cc benchmark_emjs_c benchmark_emjs_cc benchmark_julia benchmark_julia_opt benchmark_python benchmark_awk benchmark_php benchmark_js benchmark_elixir benchmark_lua benchmark_R
 
 benchmark_rust:
 	@./timer.sh rust ./saw_rust
@@ -23,6 +23,9 @@ benchmark_emjs_cc:
 benchmark_julia:
 	@./timer.sh julia './saw.jl'
 
+benchmark_julia_opt:
+	@./timer.sh 'julia (optimized)' './saw_opt.jl'
+
 benchmark_python:
 	@./timer.sh python './saw.py'
 
@@ -37,6 +40,12 @@ benchmark_js:
 
 benchmark_elixir:
 	@./timer.sh elixir './saw.ex'
+
+benchmark_lua:
+	@./timer.sh lua './saw.lua'
+
+benchmark_R:
+	@./timer.sh Rscript './saw.r'
 
 saw_rust: saw.rs
 	rustc -C opt-level=3 -C lto -o saw_rust saw.rs
