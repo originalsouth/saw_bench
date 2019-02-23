@@ -27,5 +27,5 @@ BEGIN{
         rsq=0
         mov(NMAX,NMAX,0)
         printf("%d;%.17g;%.17g\n",n,z,rsq/z)
-    }   
+    }
 }
