@@ -18,24 +18,27 @@ Feel free to reuse and contribute, pull requests are very welcome!
 This code is (and forever will be) a work in progress.
 
 ### Usage
-Make sure Rust, gcc, Julia, python, gawk, php, nodejs and emscripten are installed and just run:
+Make sure Rust, gcc, fortran90, Julia, python, gawk, php, nodejs, emscripten, elixir, lua and R are installed and just run:
 ```
-make benchmark
+make benchmark | sort -t: -k 2 -h
 ```
 
 ### Results
-Running this on a Intel(R) Xeon(R) CPU E5-2690 0 @ 2.90GHz we find:
+Running this on a `Intel(R) Core(TM) M-5Y10c CPU @ 0.80GHz` with an up to date `4.20.11-arch1-1-ARCH` we find:
 ```
-rust: 4.68s
-fortran90: 4.34s
-c: 4.18s
-c++: 4.02s
-emcc/js (node): 6.88s
-em++/js (node): 9.07s
-julia: 9.21s
-python: 694.97s
-awk (gawk): 518.20s
-php: 233.37s
-node (js): 23.07s
-elixir: 1379.60s
+c: 6.13s
+c++: 6.40s
+rust: 7.69s
+fortran90: 8.01s
+emcc/js (node): 8.47s
+julia (optimized): 9.12s
+em++/js (node): 11.29s
+node (js): 34.35s
+php: 233.73s
+julia: 243.69s
+lua: 357.70s
+awk (gawk): 716.22s
+python: 840.96s
+Rscript: 1780.09s
+elixir: 2222.39s
 ```
