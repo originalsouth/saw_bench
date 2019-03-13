@@ -24,21 +24,23 @@ make benchmark | sort -t: -k 2 -h
 ```
 
 ### Results
-Running this on a `Intel(R) Core(TM) M-5Y10c CPU @ 0.80GHz` with an up to date `4.20.11-arch1-1-ARCH` we find:
+Running this on a `Intel(R) Core(TM) M-5Y10c CPU @ 0.80GHz` with an up to date `5.0.0-arch1-1-ARCH` we find:
 ```
-c: 6.13s
-c++: 6.40s
-rust: 7.69s
-fortran90: 8.01s
-emcc/js (node): 8.47s
-julia (optimized): 9.12s
-em++/js (node): 11.29s
-node (js): 34.35s
-php: 233.73s
-julia: 243.69s
-lua: 357.70s
-awk (gawk): 716.22s
-python: 840.96s
-Rscript: 1780.09s
-elixir: 2222.39s
+c (gcc): 6.26s
+c++ (gcc): 6.55s
+c (clang): 6.98s
+c++ (clang): 7.11s
+rust: 7.92s
+fortran90 (gcc): 8.24s
+emcc/js (node): 8.68s
+julia (optimized): 9.44s
+em++/js (node): 11.56s
+node (js): 32.95s
+julia: 216.54s
+php: 244.90s
+lua: 375.86s
+awk (gawk): 732.79s
+python: 862.74s
+Rscript: 1898.63s
+elixir: 2366.36s
 ```
