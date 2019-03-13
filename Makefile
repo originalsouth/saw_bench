@@ -1,18 +1,24 @@
-all: saw_rust saw_f90 saw_c saw_cc saw_em_c.js saw_em_cc.js
+all: saw_rust saw_f90 saw_c saw_clang_c saw_cc saw_clang_cc saw_em_c.js saw_em_cc.js
 
-benchmark: all benchmark_rust benchmark_f90 benchmark_c benchmark_cc benchmark_emjs_c benchmark_emjs_cc benchmark_julia benchmark_julia_opt benchmark_python benchmark_awk benchmark_php benchmark_js benchmark_elixir benchmark_lua benchmark_R
+benchmark: all benchmark_rust benchmark_f90 benchmark_c benchmark_clang_c benchmark_cc benchmark_clang_cc benchmark_emjs_c benchmark_emjs_cc benchmark_julia benchmark_julia_opt benchmark_python benchmark_awk benchmark_php benchmark_js benchmark_elixir benchmark_lua benchmark_R
 
 benchmark_rust:
 	@./timer.sh rust ./saw_rust
 
 benchmark_f90:
-	@./timer.sh fortran90 ./saw_f90
+	@./timer.sh 'fortran90 (gcc)' ./saw_f90
 
 benchmark_c:
-	@./timer.sh c ./saw_c
+	@./timer.sh 'c (gcc)' ./saw_c
+
+benchmark_clang_c:
+	@./timer.sh 'c (clang)' ./saw_clang_c
 
 benchmark_cc:
-	@./timer.sh c++ ./saw_cc
+	@./timer.sh 'c++ (gcc)' ./saw_cc
+
+benchmark_clang_cc:
+	@./timer.sh 'c++ (clang)' ./saw_clang_cc
 
 benchmark_emjs_c:
 	@./timer.sh 'emcc/js (node)' './saw_em_c.js'
@@ -56,6 +62,9 @@ saw_f90: saw.f90
 saw_c: saw.c
 	gcc -Wall -Wextra -std=c11 -flto -O3 -o saw_c saw.c
 
+saw_clang_c: saw.c
+	clang -Wall -Wextra -std=c11 -flto -O3 -o saw_clang_c saw.c
+
 saw_em_c.js: saw.c
 	emcc -Wall -Wextra -std=c11 -flto -O3 -o saw_em_c.js saw.c
 	@sed -i "1i #!/usr/bin/env node" saw_em_c.js
@@ -63,6 +72,9 @@ saw_em_c.js: saw.c
 
 saw_cc: saw.cc
 	g++ -Wall -Wextra -std=c++11 -flto -O3 -o saw_cc saw.cc
+
+saw_clang_cc: saw.cc
+	clang++ -Wall -Wextra -std=c++11 -flto -O3 -o saw_clang_cc saw.cc
 
 saw_em_cc.js: saw.cc
 	em++ -Wall -Wextra -std=c++11 -flto -O3 -o saw_em_cc.js saw.cc
@@ -74,5 +86,7 @@ clean:
 	-rm -f saw_f90
 	-rm -f saw_c
 	-rm -f saw_cc
+	-rm -f saw_clang_c
+	-rm -f saw_clang_cc
 	-rm -f saw_em_c.js*
 	-rm -f saw_em_cc.js*
