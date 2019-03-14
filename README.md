@@ -1,5 +1,5 @@
 # saw_bench
-Benchmark a bunch of programming languages by enumerating self avoiding random walks.
+Benchmark a bunch of programming languages by enumerating self avoiding walks.
 
 ```
 /* By BC van Zuiden -- Leiden, November 2016 */
@@ -12,16 +12,17 @@ Benchmark a bunch of programming languages by enumerating self avoiding random w
 ```
 
 ###
-Compares runtimes the same recursive algorithm for self avoiding random walks 
+Compares execution time for the same recursive algorithm for enumerating self avoiding walks implemented in a bunch of different programming languages (or compiler platforms).
 
 Feel free to reuse and contribute, pull requests are very welcome!
 This code is (and forever will be) a work in progress.
 
 ### Usage
-Make sure Rust, gcc, fortran90, Julia, python, gawk, php, nodejs, emscripten, elixir, lua and R are installed and just run:
+Make sure make, Rust, gcc, clang, fortran90, Julia, python, gawk, php, nodejs, emscripten, elixir, lua and R are installed and just run:
 ```
 make benchmark | sort -t: -k 2 -h
 ```
+and you will see an ordered list of execution times (obviously less is faster).
 
 ### Results
 Running this on a `Intel(R) Core(TM) M-5Y10c CPU @ 0.80GHz` with an up to date `5.0.0-arch1-1-ARCH` we find:
